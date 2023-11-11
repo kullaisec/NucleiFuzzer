@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# ASCII art
-printf "\e[91m
-    _   __           __     _ ______
-   / | / /_  _______/ /__  (_) ____/_  __________  ___  _____
-  /  |/ / / / / ___/ / _ \/ / /_  / / / /_  /_  / / _ \/ ___/
- / /|  / /_/ / /__/ /  __/ / __/ / /_/ / / /_/ /_/  __/ /
-/_/ |_/\__,_/\___/_/\___/_/_/    \__,_/ /___/___/\___/_/
-
-                               Made by Satya Prakash (0xKayala)
-\e[0m"
-
 # Help menu
 display_help() {
     echo -e "NucleiFuzzer is a Powerful Automation tool for detecting XSS, SQLi, SSRF, Open-Redirect, etc. vulnerabilities in Web Applications\n\n"
@@ -86,7 +75,7 @@ fi
 
 # Step 4: Run the Nuclei Fuzzing templates on $domain.txt file
 echo "Running Nuclei on $domain.txt"
-cat output/$domain.txt | httpx -silent -mc 200,301,302,403 | nuclei -t "$home_dir/fuzzing-templates" -rl 05
+cat output/$domain.txt | httpx -silent -mc 200,301,302,403 | nuclei -t "$home_dir/fuzzing-templates" -rl 05 | notify
 
 # Step 5: End with a general message as the scan is completed
 echo "Scan is completed - Happy Fuzzing"
